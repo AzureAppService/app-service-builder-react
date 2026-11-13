@@ -12,6 +12,23 @@ deep-link fallback was not recorded. The renamed repository and its routes
 must still be verified in your authorized preview environment. Local checks
 do not establish cloud deployment success or regional availability.
 
+## Root-page actions
+
+The starter UI lives at `/`. **Check static health** reads `/health.json` and
+displays the result in place, including failures and retry guidance. A reachable
+static file is not a backend health probe or Azure deployment status.
+**Customize this sample** explains which files to edit in your fork; it does
+not guess your repository or app URL. Framework and App Service Builder
+documentation are labeled separately.
+
+## Local preview
+
+![React sample root page with inline health checking, an interactive counter, local deployment details, and customization guidance](docs/images/sample.png)
+
+Captured at `/` from the production build served locally in Microsoft Edge.
+The `local` markers describe this sample build, not an Azure deployment.
+This screenshot is local sample evidence only.
+
 ## Features
 
 - React landing page with an interactive counter.
@@ -31,8 +48,8 @@ do not establish cloud deployment success or regional availability.
 - Optional: [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
   for the endpoint verification script.
 
-The lockfile contains React **19.3.0**, Vite **8.3.1**, and React Router
-**7.18.4**. Keep `package-lock.json` and use `npm ci` to install the locked
+The lockfile contains React **19.3.1**, Vite **8.3.7**, and React Router
+**7.18.5**. Keep `package-lock.json` and use `npm ci` to install the locked
 versions rather than updating dependencies during setup.
 
 ## Run locally
