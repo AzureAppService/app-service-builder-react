@@ -93,7 +93,7 @@ function Home() {
       </details>
       <nav className="documentation" aria-label="Documentation">
         <a href="https://react.dev/">Framework documentation</a>
-        <a href="https://builderapps.azure.com/docs/">App Service Builder documentation</a>
+        <a href="https://builder.appservice.azure.com/docs/">App Service Builder documentation</a>
       </nav>
     </Layout>
   )

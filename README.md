@@ -1,7 +1,7 @@
 # App Service Builder: React sample
 
 A standalone React single-page application built with Vite and React Router
-for [Azure App Service Builder](https://builderapps.azure.com/docs/). The
+for [Azure App Service Builder](https://builder.appservice.azure.com/docs/). The
 deployment consists only of static HTML, JavaScript, CSS, and JSON. There is
 no backend, database, external service, or hosted Vite development server.
 
@@ -151,7 +151,7 @@ directory.
 
 ## Deploy your fork through Builder Portal
 
-Follow the [Portal quickstart](https://builderapps.azure.com/docs/quickstarts/portal/)
+Follow the [Portal quickstart](https://builder.appservice.azure.com/docs/quickstarts/portal/)
 for your authorized Private Preview environment:
 
 1. Commit and push the sample to the `main` branch of your GitHub repository.
@@ -192,7 +192,7 @@ not update existing assets.
 For a deployed app, configure the labels in Portal **Variables**, then deploy
 to rebuild the static output. Saving variables alone does not establish that
 the current bundle changed. See the
-[variables guide](https://builderapps.azure.com/docs/guides/variables/).
+[variables guide](https://builder.appservice.azure.com/docs/guides/variables/).
 
 ### Update and redeploy
 
@@ -209,9 +209,9 @@ Deleting the app does not delete your GitHub repository or local clone.
 
 ## Resources and contributions
 
-- [App Service Builder documentation](https://builderapps.azure.com/docs/)
-- [Sample catalog](https://builderapps.azure.com/docs/samples/)
-- [Manifest guide](https://builderapps.azure.com/docs/guides/builder-yaml/)
+- [App Service Builder documentation](https://builder.appservice.azure.com/docs/)
+- [Sample catalog](https://builder.appservice.azure.com/docs/samples/)
+- [Manifest guide](https://builder.appservice.azure.com/docs/guides/builder-yaml/)
 - [Contributing](CONTRIBUTING.md)
 - [Code of Conduct](.github/CODE_OF_CONDUCT.md)
 - [Security reporting](SECURITY.md)
