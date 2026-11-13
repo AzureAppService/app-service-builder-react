@@ -1,7 +1,7 @@
 main {
-  width: min(42rem, calc(100% - 3rem));
-  margin: 4rem auto;
-  padding: 2rem;
+  width: min(46rem, calc(100% - 3rem));
+  margin: 3rem auto;
+  padding: 2.5rem;
   background: #fff;
   border: 1px solid #dce3ee;
   border-radius: 1rem;
@@ -17,7 +17,11 @@ main {
 }
 
 h1 {
-  margin-top: 0;
+  margin: 0 0 1rem;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 h2 {
@@ -37,7 +41,8 @@ nav {
 }
 
 .button,
-.counter {
+.counter,
+button {
   display: inline-block;
   padding: 0.75rem 1rem;
   color: #fff;
@@ -47,6 +52,7 @@ nav {
   font: inherit;
   text-decoration: none;
   cursor: pointer;
+  min-height: 44px;
 }
 
 .button:hover,
@@ -78,4 +84,22 @@ dt {
 dd {
   margin: 0;
   overflow-wrap: anywhere;
+}
+
+p { line-height: 1.65; }
+a { text-underline-offset: 0.2em; }
+button.secondary { color: #3349ad; background: #fff; border: 1px solid #b5bfda; }
+button.secondary:hover { background: #eef1fa; }
+button:disabled { color: #526079; background: #eef1fa; cursor: wait; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #3349ad; outline-offset: 4px; }
+.health-result { color: #42536d; font-size: 0.9rem; margin: 0 0 1.75rem; }
+details { margin-top: 2rem; padding: 1rem 0; border-block: 1px solid #dce3ee; }
+summary { min-height: 44px; display: list-item; align-content: center; font-weight: 700; cursor: pointer; }
+code { overflow-wrap: anywhere; font-size: 0.9em; }
+.documentation { font-size: 0.9rem; margin-bottom: 0; }
+
+@media (max-width: 38rem) {
+  main { width: calc(100% - 1.5rem); margin: 1rem auto; padding: 1.5rem; }
+  dl div { grid-template-columns: 1fr; gap: 0.25rem; }
+  nav { align-items: flex-start; gap: 0.75rem; }
 }

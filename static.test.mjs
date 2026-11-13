@@ -4,6 +4,26 @@ import { readdir, readFile } from 'node:fs/promises'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 import { stripVTControlCharacters } from 'node:util'
+import { checkHealth } from './src/health.js'
+
+test('static health checks file serving and rejects unhealthy or unrelated responses', async (t) => {
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    assert.equal(url, '/health.json')
+    assert.equal(options.cache, 'no-store')
+    return new Response('{"status":"ok","app":"app-service-builder-react"}')
+  })
+  assert.match(await checkHealth(), /file serving, not a running backend/)
+  for (const response of [
+    new Response('Unavailable', { status: 503 }),
+    new Response('{"status":"ok","app":"another-app"}'),
+    new Response('not JSON'),
+  ]) {
+    globalThis.fetch.mock.mockImplementation(async () => response)
+    await assert.rejects(checkHealth())
+  }
+  globalThis.fetch.mock.mockImplementation(async () => { throw new TypeError('offline') })
+  await assert.rejects(checkHealth(), /offline/)
+})
 
 test('single component retains Vite detection and root routing', async () => {
   const manifest = await readFile(new URL('./builder.yaml', import.meta.url), 'utf8')

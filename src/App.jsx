@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { checkHealth } from './health'
 
 const appInfo = {
   app: 'app-service-builder-react',
@@ -22,20 +23,37 @@ function Layout({ eyebrow, title, children }) {
 
 function Home() {
   const [count, setCount] = useState(0)
+  const [checking, setChecking] = useState(false)
+  const [health, setHealth] = useState('Check the static health file without leaving this page.')
+
+  async function refreshHealth() {
+    setChecking(true)
+    setHealth('Checking /health.json…')
+    try {
+      setHealth(await checkHealth())
+    } catch {
+      setHealth('Static health check failed. Retry, or inspect /health.json and your static host configuration.')
+    } finally {
+      setChecking(false)
+    }
+  }
 
   return (
     <Layout eyebrow="App Service Builder / React" title="React Vite SPA is running">
       <p>
-        This page was rendered by React from a production Vite static bundle.
+        This sample renders in your browser with React and Vite.
       </p>
 
       <nav aria-label="Test routes">
         <Link className="button" to="/products/widget-1">
           Open the deep route
         </Link>
-        <a href="/health.json">View static health</a>
-        <a href="/version.json">View version metadata</a>
+        <button className="secondary" type="button" disabled={checking} onClick={refreshHealth}>
+          {checking ? 'Checking health…' : 'Check static health'}
+        </button>
+        <a href="/version.json">View version JSON</a>
       </nav>
+      <p className="health-result" role="status">{health}</p>
 
       <button
         className="counter"
@@ -68,6 +86,15 @@ function Home() {
           </div>
         </dl>
       </section>
+      <details>
+        <summary>Customize this sample</summary>
+        <p>In your fork, edit the home page in <code>src/App.jsx</code> and the styles in
+          <code> src/App.css</code>. Commit your changes and deploy your fork through your Builder App.</p>
+      </details>
+      <nav className="documentation" aria-label="Documentation">
+        <a href="https://react.dev/">Framework documentation</a>
+        <a href="https://builderapps.azure.com/docs/">App Service Builder documentation</a>
+      </nav>
     </Layout>
   )
 }
