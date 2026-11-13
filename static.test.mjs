@@ -35,7 +35,7 @@ test('single component retains Vite detection and root routing', async () => {
 
 test('build contains only the static site and public metadata', async () => {
   const entries = await readdir(new URL('./dist/', import.meta.url))
-  assert.deepEqual(entries.sort(), ['assets', 'health.json', 'index.html', 'version.json'])
+  assert.deepEqual(entries.sort(), ['assets', 'brand', 'health.json', 'index.html', 'version.json'])
 
   const health = JSON.parse(await readFile(new URL('./dist/health.json', import.meta.url), 'utf8'))
   const version = JSON.parse(await readFile(new URL('./dist/version.json', import.meta.url), 'utf8'))
@@ -103,16 +103,18 @@ test('production preview serves SPA routes, assets, and JSON', { timeout: 20000 
   const scripts = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map((match) => match[1])
   const styles = [...html.matchAll(/<link\b[^>]*\bhref="([^"]+\.css)"/g)].map((match) => match[1])
   assert.equal(scripts.length, 1)
-  assert.equal(styles.length, 1)
+  assert.equal(styles.length, 2)
   for (const [asset, contentType] of [
     ...scripts.map((asset) => [asset, /javascript/]),
     ...styles.map((asset) => [asset, /text\/css/]),
+    ['/brand/builder.svg', /image\/svg\+xml/],
+    ['/brand/react.png', /image\/png/],
   ]) {
-    assert.match(asset, /^\/assets\/[\w-]+\.(js|css)$/)
+    assert.match(asset, /^\/(?:assets\/[\w-]+\.(?:js|css)|brand\/[\w.-]+\.(?:css|svg|png))$/)
     const response = await fetch(new URL(asset, origin))
     assert.equal(response.status, 200)
     assert.match(response.headers.get('content-type'), contentType)
-    assert.ok((await response.text()).length > 0)
+    assert.ok((await response.arrayBuffer()).byteLength > 0)
   }
 
   for (const [path, expected] of [

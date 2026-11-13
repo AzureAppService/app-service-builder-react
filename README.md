@@ -25,6 +25,19 @@ documentation are labeled separately.
 
 ![React sample root page with inline health checking, an interactive counter, local deployment details, and customization guidance](docs/images/sample.png)
 
+**LOCAL — Microsoft Edge, 1440px desktop, root `/`, production static build.**
+The React-centered daylight composition preserves the existing counter,
+React Router paths, and inline static-file health check. Edit `src/App.jsx`
+for content and `public/brand/family.v1.css` for the visual family; baseline
+styles remain in `src/App.css`.
+
+### Logo provenance
+
+`public/brand/builder.svg` is the supplied official App Service Builder mark.
+`public/brand/react.png` is the unmodified [official React site icon](https://react.dev/apple-touch-icon.png)
+from [react.dev](https://react.dev/). React is a trademark of Meta Platforms, Inc.
+Logos identify the stack; no endorsement is implied.
+
 Captured at `/` from the production build served locally in Microsoft Edge.
 The `local` markers describe this sample build, not an Azure deployment.
 This screenshot is local sample evidence only.

@@ -13,10 +13,20 @@ const appInfo = {
 
 function Layout({ eyebrow, title, children }) {
   return (
-    <main>
+    <main className="sample-sheet">
+      <header className="sample-header">
+        <Link className="sample-brand" to="/"><img src="/brand/builder.svg" alt="" width="32" height="32" />App Service Builder</Link>
+        <nav aria-label="Documentation">
+          <a href="https://react.dev/">React documentation</a>
+          <a href="https://builder.appservice.azure.com/docs/">App Service Builder documentation</a>
+        </nav>
+      </header>
+      <div className="sample-content">
+      <div className="ecosystem-logo"><img src="/brand/react.png" alt="" width="52" height="52" /><span>React</span></div>
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       {children}
+      </div>
     </main>
   )
 }
@@ -89,12 +99,14 @@ function Home() {
       <details>
         <summary>Customize this sample</summary>
         <p>In your fork, edit the home page in <code>src/App.jsx</code> and the styles in
-          <code> src/App.css</code>. Commit your changes and deploy your fork through your Builder App.</p>
+          <code> public/brand/family.v1.css</code>. Commit your changes and deploy your fork through your Builder App.</p>
       </details>
-      <nav className="documentation" aria-label="Documentation">
-        <a href="https://react.dev/">Framework documentation</a>
-        <a href="https://builder.appservice.azure.com/docs/">App Service Builder documentation</a>
-      </nav>
+      <details>
+        <summary>Logo sources &amp; notices</summary>
+        <p>Unmodified <a href="https://react.dev/">React artwork</a> identifies this framework.
+          React is a trademark of Meta Platforms, Inc. App Service Builder uses its
+          supplied official mark. No endorsement implied.</p>
+      </details>
     </Layout>
   )
 }
