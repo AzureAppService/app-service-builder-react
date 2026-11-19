@@ -61,7 +61,7 @@ This screenshot is local sample evidence only.
 - Optional: [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
   for the endpoint verification script.
 
-The lockfile contains React **19.3.1**, Vite **8.3.7**, and React Router
+The lockfile contains React **19.3.1**, Vite **8.3.8**, and React Router
 **7.18.5**. Keep `package-lock.json` and use `npm ci` to install the locked
 versions rather than updating dependencies during setup.
 
